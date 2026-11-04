@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b4d">
+  <meta name="description" content="Radar helps you discover early-stage teams through their mission, people, and public evidence.">
+  <title>Radar — Find the team you want to build with</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="radar.css">
+  <script src="sr007.js" defer></script>
+  <script src="speedrun-archive.js" defer></script>
+  <script src="company-context.js" defer></script>
+  <script src="official-enrichment.js" defer></script>
+  <script src="archive-backgrounds.js" defer></script>
+  <script src="logos.js" defer></script>
+  <script src="backgrounds.js" defer></script>
+  <script src="yc-founders.js" defer></script>
+  <script src="schools.js" defer></script>
+  <script src="yc-founder-snapshot.js" defer></script>
+  <script src="yc-feed.js" defer></script>
+  <script src="nlp.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Radar home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>radar<span class="brand-stop">.</span></span></a>
+    <nav class="topnav" aria-label="Main navigation">
+      <button class="nav-link active" data-view="explore">Explore</button>
+      <button class="nav-link" data-view="saved">Saved <span id="saved-count" class="nav-count">0</span></button>
+    </nav>
+    <span class="topbar-note">An early look at ambitious teams</span>
+  </header>
+
+  <main id="top">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro-copy">
+        <p class="edition"><span class="edition-pulse"></span> 2026 field notes <span class="edition-divider"></span> YC + a16z Speedrun</p>
+        <h1 id="intro-title">Find the team you<br>want to <em>build with.</em></h1>
+        <p class="intro-subtitle">Explore young companies through the problems they care about and the people tackling them. Follow your curiosity, then find a way in.</p>
+      </div>
+      <div class="intro-orbit" aria-hidden="true"><span class="orbit-ring r1"></span><span class="orbit-ring r2"></span><span class="orbit-ring r3"></span><span class="orbit-point p1"></span><span class="orbit-point p2"></span><span class="orbit-point p3"></span><span class="orbit-sweep"></span><span class="orbit-caption">The interesting<br>ones are out there.</span></div>
+    </section>
+
+    <section class="workspace" aria-label="Startup explorer">
+      <div class="workspace-heading">
+        <div><p class="section-kicker">The directory</p><h2>On the radar <span id="result-total" class="result-total">80</span></h2></div>
+        <p>Explore a16z Speedrun and publicly launched YC teams from 2023 onward. Tune the view around what matters to you.</p>
+      </div>
+      <div class="toolbar">
+        <div class="mode-switch" role="group" aria-label="Ranking mode">
+          <button type="button" class="mode active" data-mode="shared" aria-pressed="true">Shared order</button>
+          <button type="button" class="mode" data-mode="personal" aria-pressed="false">For you</button>
+        </div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search missions, teams, companies" autocomplete="off"><kbd>/</kbd></label>
+      </div>
+      <div class="workspace-grid">
+        <aside class="filters" aria-label="Explore filters">
+          <div class="filter-section">
+            <h3>Programs</h3>
+            <div class="filter-options" role="group" aria-label="Program"><button class="filter" data-program="all">All <span data-count="all">325</span></button><button class="filter" data-program="yc">Y Combinator <span data-count="yc">3</span></button><button class="filter active" data-program="speedrun">a16z Speedrun <span data-count="speedrun">322</span></button></div>
+            <label class="cohort-label" for="cohort-filter">Cohort</label>
+            <select id="cohort-filter" aria-label="Filter by cohort"></select>
+            <p id="yc-load-status" class="yc-load-status" role="status" aria-live="polite">Loading YC batches from public profiles…</p>
+            <p id="founder-load-status" class="yc-load-status" role="status" aria-live="polite"></p>
+            <label class="cohort-label yc-focus-label" for="yc-focus-filter">YC activity</label>
+            <select id="yc-focus-filter" aria-label="Filter YC companies by activity"><option value="active">Active teams</option><option value="hiring">Listed as hiring</option><option value="all">All YC statuses</option></select>
+          </div>
+          <div class="filter-section discovery-filters">
+            <h3>Explore by</h3>
+            <label for="industry-filter">Industry</label>
+            <select id="industry-filter" aria-label="Filter by industry"></select>
+            <label for="background-filter">Founder background</label>
+            <select id="background-filter" aria-label="Filter by founder background"></select>
+            <label for="school-filter">Founder school</label>
+            <select id="school-filter" aria-label="Filter by founder school"></select>
+            <p id="school-coverage" role="status"></p>
+            <p>School and background details come from public founder profiles. Missing details mean not yet documented.</p>
+          </div>
+          <div class="filter-section interest-section">
+            <div class="filter-title"><h3>Your interests</h3><span>Pick a few</span></div>
+            <p>These shape your personal order. You can change them anytime.</p>
+            <div id="interest-options" class="interest-options"></div>
+          </div>
+          <div class="filter-section match-workbench">
+            <span class="match-eyebrow">YOUR SIGNAL</span>
+            <h3>Find your connections</h3>
+            <p>Describe the problems you want to work on. Add resume text if you want your experience considered too.</p>
+            <label for="interest-text">What interests you?</label>
+            <textarea id="interest-text" rows="4" placeholder="e.g. robotics evaluation, tools for research teams, climate hardware"></textarea>
+            <label for="resume-text">Resume or experience <span>optional</span></label>
+            <textarea id="resume-text" rows="4" placeholder="Paste a resume or a few lines about what you have built"></textarea>
+            <label class="resume-file" for="resume-file">Upload .pdf, .txt or .md resume</label>
+            <input id="resume-file" type="file" accept=".pdf,.txt,.text,.md,application/pdf,text/plain,text/markdown">
+            <div class="match-actions"><button type="button" id="find-connections">Find connections ↗</button><button type="button" id="clear-connections">Clear text</button></div>
+            <p id="match-status" role="status" aria-live="polite">Text stays in this browser. PDF reading loads Mozilla PDF.js.</p>
+          </div>
+          <div class="method-note"><span class="method-symbol">◎</span><h3>How we order teams</h3><p>Shared order shows researched picks first. Your order compares your interests and optional experience with public company text. Neither predicts success.</p><button id="method-link" type="button">See the approach <span aria-hidden="true">↗</span></button></div>
+        </aside>
+        <div class="results-column">
+          <section id="radar-map" class="radar-module" aria-label="Startup topic atlas"></section>
+          <div class="results-head"><span id="results-label">6 companies to explore</span><span id="sort-label">Ordered by editorial signal</span></div>
+          <div id="company-list" class="company-list" aria-live="polite"></div>
+          <p class="directory-foot">Speedrun SR001–SR006 snapshot: September 25, 2026; SR007 snapshot: October 18, 2026. YC records load from a public directory mirror. Details can change; follow each linked profile for the latest information.</p>
+        </div>
+        <aside id="detail-panel" class="detail-panel" aria-label="Company details"></aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>radar<span class="brand-stop">.</span></span><span>Look closer. Find your people.</span><span>Independent prototype · Not affiliated with YC or a16z</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+site/
+.chrome-preview/
+.edge-preview*/
+.edge-yc-preview/
+.edge-radar-open*/
+radar-preview*.png
+radar-mobile*.png
+yc-preview.png
+.openai/
